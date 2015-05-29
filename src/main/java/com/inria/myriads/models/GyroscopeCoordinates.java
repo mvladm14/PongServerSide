@@ -5,7 +5,7 @@ import java.util.Objects;
 import com.fluentinterface.ReflectionBuilder;
 import com.fluentinterface.builder.Builder;
 
-public class GryoscopeCoordinates {
+public class GyroscopeCoordinates {
 
 	private double x;
 	private double y;
@@ -15,7 +15,7 @@ public class GryoscopeCoordinates {
 		return ReflectionBuilder.implementationFor(GryoscopeCoordinatesBuilder.class).create();
 	}
 
-	public interface GryoscopeCoordinatesBuilder extends Builder<GryoscopeCoordinates> {
+	public interface GryoscopeCoordinatesBuilder extends Builder<GyroscopeCoordinates> {
 		public GryoscopeCoordinatesBuilder withX(double x);
 		public GryoscopeCoordinatesBuilder withY(double y);
 		public GryoscopeCoordinatesBuilder withZ(double z);
@@ -52,9 +52,9 @@ public class GryoscopeCoordinates {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof GryoscopeCoordinates)
-				&& Objects.equals(getX(), ((GryoscopeCoordinates) obj).getX())
-				&& Objects.equals(getY(), ((GryoscopeCoordinates) obj).getY())
-				&& Objects.equals(getZ(), ((GryoscopeCoordinates) obj).getZ());
+		return (obj instanceof GyroscopeCoordinates)
+				&& Objects.equals(getX(), ((GyroscopeCoordinates) obj).getX())
+				&& Objects.equals(getY(), ((GyroscopeCoordinates) obj).getY())
+				&& Objects.equals(getZ(), ((GyroscopeCoordinates) obj).getZ());
 	}
 }
