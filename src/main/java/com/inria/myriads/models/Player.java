@@ -57,7 +57,7 @@ public class Player {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof GyroscopeCoordinates)
+		return (obj instanceof Player)
 				&& Objects.equals(getUsername(), ((Player) obj).getUsername())
 				&& Objects.equals(getGyroscopeCoordinates(),
 						((Player) obj).getGyroscopeCoordinates());
