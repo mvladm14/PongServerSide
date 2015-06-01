@@ -5,6 +5,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import models.GyroscopeCoordinates;
+import models.Player;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.inria.myriads.interfaces.PlayerSvcApi;
-import com.inria.myriads.models.GyroscopeCoordinates;
-import com.inria.myriads.models.Player;
+import restInterfaces.PlayerSvcApi;
+
 
 @Controller
 public class PlayerController {

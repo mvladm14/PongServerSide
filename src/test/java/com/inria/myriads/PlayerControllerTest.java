@@ -4,13 +4,13 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
 
+import models.GyroscopeCoordinates;
+import models.Player;
+
 import org.junit.Test;
 
+import restInterfaces.PlayerSvcApi;
 import retrofit.RestAdapter;
-
-import com.inria.myriads.interfaces.PlayerSvcApi;
-import com.inria.myriads.models.GyroscopeCoordinates;
-import com.inria.myriads.models.Player;
 
 public class PlayerControllerTest {
 

@@ -4,15 +4,14 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
 
+import models.Coordinates;
+import models.PongBall;
+
 import org.junit.Test;
 
+import restInterfaces.PongBallSvcApi;
 import retrofit.RestAdapter;
 
-import com.inria.myriads.interfaces.PongBallSvcApi;
-import com.inria.myriads.models.Coordinates;
-import com.inria.myriads.models.GyroscopeCoordinates;
-import com.inria.myriads.models.Player;
-import com.inria.myriads.models.PongBall;
 
 public class BallControllerTest {
 

@@ -5,6 +5,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import models.Coordinates;
+import models.PongBall;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.inria.myriads.interfaces.PongBallSvcApi;
-import com.inria.myriads.models.Coordinates;
-import com.inria.myriads.models.PongBall;
+import restInterfaces.PongBallSvcApi;
 
 @Controller
 public class PongBallController {
