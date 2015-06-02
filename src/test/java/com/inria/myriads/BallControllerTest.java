@@ -15,7 +15,8 @@ import retrofit.RestAdapter;
 
 public class BallControllerTest {
 
-	private static final String SERVER = "http://131.254.101.102:8080/myriads";
+	//private static final String SERVER = "http://131.254.101.102:8080/myriads";
+	private static final String SERVER = "http://131.254.101.102:8080/PongServerSide";
 
 	private PongBallSvcApi pongBallSvc = new RestAdapter.Builder()
 			.setEndpoint(SERVER).build().create(PongBallSvcApi.class);

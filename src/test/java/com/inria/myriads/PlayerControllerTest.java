@@ -14,7 +14,8 @@ import retrofit.RestAdapter;
 
 public class PlayerControllerTest {
 
-	private static final String SERVER = "http://131.254.101.102:8080/myriads";
+	//private static final String SERVER = "http://131.254.101.102:8080/myriads";
+	private static final String SERVER = "http://131.254.101.102:8080/PongServerSide";
 
 	private GyroscopeCoordinates gyroscopeCoordinatesP1 = GyroscopeCoordinates
 			.create().withX(10.1).withY(20.2).withZ(30.3).build();
