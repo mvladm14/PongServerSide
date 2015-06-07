@@ -4,7 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
 
-import models.GyroscopeCoordinates;
+import models.PhoneCoordinates;
 import models.Player;
 
 import org.junit.Test;
@@ -17,16 +17,16 @@ public class PlayerControllerTest {
 	//private static final String SERVER = "http://131.254.101.102:8080/myriads";
 	private static final String SERVER = "http://131.254.101.102:8080/PongServerSide";
 
-	private GyroscopeCoordinates gyroscopeCoordinatesP1 = GyroscopeCoordinates
+	private PhoneCoordinates gyroscopeCoordinatesP1 = PhoneCoordinates
 			.create().withX(10.1).withY(20.2).withZ(30.3).build();
-	private GyroscopeCoordinates gyroscopeCoordinatesP2 = GyroscopeCoordinates
+	private PhoneCoordinates gyroscopeCoordinatesP2 = PhoneCoordinates
 			.create().withX(30.3).withY(20.2).withZ(10.1).build();
 
 	private Player player1 = Player.create().withId(1).withUsername("player1")
-			.withGyroscopeCoordinates(gyroscopeCoordinatesP1).build();
+			.withPhoneCoordinates(gyroscopeCoordinatesP1).build();
 
 	private Player player2 = Player.create().withId(2).withUsername("player2")
-			.withGyroscopeCoordinates(gyroscopeCoordinatesP2).build();
+			.withPhoneCoordinates(gyroscopeCoordinatesP2).build();
 
 	private PlayerSvcApi pongSvc = new RestAdapter.Builder().setEndpoint(SERVER)
 			.build().create(PlayerSvcApi.class);
@@ -42,15 +42,15 @@ public class PlayerControllerTest {
 	@Test
 	public void test_GET_PlayerGyroscopeCoordinates() throws Exception {
 		pongSvc.addPlayer(player1);
-		GyroscopeCoordinates stored = pongSvc.getGyroscopeCoordinates(player1.getId());
+		PhoneCoordinates stored = pongSvc.getPhoneCoordinates(player1.getId());
 		assertTrue(stored.equals(gyroscopeCoordinatesP1));
 	}
 	
 	@Test
 	public void test_POST_PlayerGyroscopeCoordinates() throws Exception {
 		pongSvc.addPlayer(player1);
-		pongSvc.setGyroscopeCoordinates(player1.getId(), gyroscopeCoordinatesP2);
-		GyroscopeCoordinates stored = pongSvc.getGyroscopeCoordinates(player1.getId());
+		pongSvc.setPhoneCoordinates(player1.getId(), gyroscopeCoordinatesP2);
+		PhoneCoordinates stored = pongSvc.getPhoneCoordinates(player1.getId());
 		assertTrue(stored.equals(gyroscopeCoordinatesP2));
 	}
 }

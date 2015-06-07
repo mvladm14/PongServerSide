@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import models.GyroscopeCoordinates;
+import models.PhoneCoordinates;
 import models.Player;
 
 import org.springframework.stereotype.Controller;
@@ -35,29 +35,29 @@ public class PlayerController {
 	}
 
 	@RequestMapping(value = PlayerSvcApi.PONG_PLAYER_PATH, method = RequestMethod.GET)
-	public @ResponseBody GyroscopeCoordinates getGyroscopeCoordinates(
+	public @ResponseBody PhoneCoordinates getPhoneCoordinates(
 			@PathVariable("id") long id) throws IOException {
-		GyroscopeCoordinates output = null;
+		PhoneCoordinates output = null;
 		if (players.get(id) != null) {
 
 			Player player = players.get(id);
 
-			output = player.getGyroscopeCoordinates();
+			output = player.getPhoneCoordinates();
 		}
 		return output;
 	}
 
 	@RequestMapping(value = PlayerSvcApi.PONG_PLAYER_PATH, method = RequestMethod.POST)
-	public @ResponseBody GyroscopeCoordinates setGyroscopeCoordinates(
-			@PathVariable("id") long id, @RequestBody GyroscopeCoordinates gv)
+	public @ResponseBody PhoneCoordinates setPhoneCoordinates(
+			@PathVariable("id") long id, @RequestBody PhoneCoordinates gv)
 			throws IOException {
 
-		GyroscopeCoordinates output = null;
+		PhoneCoordinates output = null;
 
 		if (players.get(id) != null) {
 			Player player = players.get(id);
-			player.setGyroscopeCoordinates(gv);
-			output = player.getGyroscopeCoordinates();
+			player.setPhoneCoordinates(gv);
+			output = player.getPhoneCoordinates();
 		}
 
 		return output;

@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import models.Coordinates;
+import models.BallCoordinates;
 import models.PongBall;
 
 import org.springframework.stereotype.Controller;
@@ -34,9 +34,9 @@ public class PongBallController {
 	}
 
 	@RequestMapping(value = PongBallSvcApi.PONG_BALL_PATH, method = RequestMethod.GET)
-	public @ResponseBody Coordinates getCoordinates(@PathVariable("id") long id)
+	public @ResponseBody BallCoordinates getCoordinates(@PathVariable("id") long id)
 			throws IOException {
-		Coordinates output = null;
+		BallCoordinates output = null;
 		if (pongBalls.get(id) != null) {
 
 			PongBall pongBall = pongBalls.get(id);
@@ -47,11 +47,11 @@ public class PongBallController {
 	}
 
 	@RequestMapping(value = PongBallSvcApi.PONG_BALL_PATH, method = RequestMethod.POST)
-	public @ResponseBody Coordinates setCoordinates(
-			@PathVariable("id") long id, @RequestBody Coordinates coordinates)
+	public @ResponseBody BallCoordinates setCoordinates(
+			@PathVariable("id") long id, @RequestBody BallCoordinates coordinates)
 			throws IOException {
 
-		Coordinates output = null;
+		BallCoordinates output = null;
 
 		if (pongBalls.get(id) != null) {
 			PongBall pongBall = pongBalls.get(id);
