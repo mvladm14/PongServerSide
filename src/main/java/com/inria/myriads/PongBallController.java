@@ -5,8 +5,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import models.BallCoordinates;
-import models.PongBall;
+import models.ball.BallCoordinates;
+import models.ball.PongBall;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
