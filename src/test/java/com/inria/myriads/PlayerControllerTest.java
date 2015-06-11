@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.Collection;
 
 import models.phone.Accelerometer;
+import models.phone.Gravity;
 import models.phone.MagneticField;
 import models.phone.PhoneSensors;
 import models.player.HittableRegion;
@@ -23,7 +24,7 @@ public class PlayerControllerTest {
 
 	private static final float[] valuesM = { 10.1f, 10.2f, 10.3f };
 	private static final float[] valuesA = { 10.4f, 10.5f, 10.6f };
-	
+
 	private static final long timeStampP1 = 100;
 	private static final long timeStampP2 = 200;
 
@@ -31,15 +32,14 @@ public class PlayerControllerTest {
 			.withValues(valuesM).build();
 	private Accelerometer accelerometer = Accelerometer.create()
 			.withValues(valuesA).build();
+	private Gravity gravity = Gravity.create().withValues(valuesM).build();
 
 	private PhoneSensors phoneCoordinatesP1 = PhoneSensors.create()
-			.withSensorTimeStamp(timeStampP1)
-			.withMagneticField(magneticField).withAccelerometer(accelerometer)
-			.build();
+			.withSensorTimeStamp(timeStampP1).withMagneticField(magneticField)
+			.withGravity(gravity).withAccelerometer(accelerometer).build();
 	private PhoneSensors phoneCoordinatesP2 = PhoneSensors.create()
-			.withSensorTimeStamp(timeStampP2)
-			.withMagneticField(magneticField).withAccelerometer(accelerometer)
-			.build();
+			.withSensorTimeStamp(timeStampP2).withMagneticField(magneticField)
+			.withAccelerometer(accelerometer).withGravity(gravity).build();
 
 	private HittableRegion hittableRegionP1 = HittableRegion.create().withX(20)
 			.build();
@@ -98,7 +98,7 @@ public class PlayerControllerTest {
 				.getAccelerometer();
 		assertTrue(stored.equals(other));
 	}
-	
+
 	@Test
 	public void test_GET_PlayerMagnetic() throws Exception {
 		pongSvc.addPlayer(player1);
@@ -117,7 +117,23 @@ public class PlayerControllerTest {
 				.getMagneticField();
 		assertTrue(stored.equals(other));
 	}
-	
+
+	@Test
+	public void test_GET_Player_Gravity() throws Exception {
+		pongSvc.addPlayer(player1);
+		Gravity stored = pongSvc.getPhoneSensors(player1.getId()).getGravity();
+		assertTrue(stored.equals(gravity));
+	}
+
+	@Test
+	public void test_POST_Player_Gravity() throws Exception {
+		pongSvc.addPlayer(player1);
+		Gravity other = Gravity.create().withValues(valuesA).build();
+		pongSvc.setGravity(player1.getId(), other);
+		Gravity stored = pongSvc.getPhoneSensors(player1.getId()).getGravity();
+		assertTrue(stored.equals(other));
+	}
+
 	@Test
 	public void test_GET_Player_TimeStamp() throws Exception {
 		pongSvc.addPlayer(player1);

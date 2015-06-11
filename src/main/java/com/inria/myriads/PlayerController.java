@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import models.phone.Accelerometer;
+import models.phone.Gravity;
 import models.phone.MagneticField;
 import models.phone.PhoneSensors;
 import models.player.Player;
@@ -147,5 +148,30 @@ public class PlayerController implements PlayerSvcApi {
 		}
 
 		return output;
+	}
+
+	@Override
+	@RequestMapping(value = PlayerSvcApi.PLAYER_GRAVITY, method = RequestMethod.GET)
+	public @ResponseBody Gravity getGravity(@PathVariable("id") long id) {
+		Gravity gravity = null;
+		if (players.get(id) != null) {
+
+			Player player = players.get(id);
+
+			gravity = player.getPhoneSensors().getGravity();
+		}
+		return gravity;
+	}
+
+	@Override
+	@RequestMapping(value = PlayerSvcApi.PLAYER_GRAVITY, method = RequestMethod.POST)
+	public @ResponseBody Gravity setGravity(@PathVariable("id") long id,
+			@RequestBody Gravity gravity) {
+		if (players.get(id) != null) {
+			Player player = players.get(id);
+			player.getPhoneSensors().setGravity(gravity);
+		}
+
+		return gravity;
 	}
 }
