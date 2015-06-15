@@ -6,6 +6,7 @@ import java.util.Map;
 
 import models.phone.Accelerometer;
 import models.phone.Gravity;
+import models.phone.LinearAcceleration;
 import models.phone.MagneticField;
 import models.phone.PhoneSensors;
 import models.player.Player;
@@ -173,5 +174,33 @@ public class PlayerController implements PlayerSvcApi {
 		}
 
 		return gravity;
+	}
+
+	@Override
+	@RequestMapping(value = PlayerSvcApi.PLAYER_LINEAR_ACCELERATION, method = RequestMethod.GET)
+	public @ResponseBody LinearAcceleration getLinearAcceleration(
+			@PathVariable long id) {
+		LinearAcceleration linearAcceleration = null;
+		if (players.get(id) != null) {
+
+			Player player = players.get(id);
+
+			linearAcceleration = player.getPhoneSensors()
+					.getLinearAcceleration();
+		}
+		return linearAcceleration;
+	}
+
+	@Override
+	@RequestMapping(value = PlayerSvcApi.PLAYER_LINEAR_ACCELERATION, method = RequestMethod.POST)
+	public @ResponseBody LinearAcceleration setLinearAcceleration(
+			@PathVariable long id,
+			@RequestBody LinearAcceleration linearAcceleration) {
+		if (players.get(id) != null) {
+			Player player = players.get(id);
+			player.getPhoneSensors().setLinearAcceleration(linearAcceleration);
+		}
+
+		return linearAcceleration;
 	}
 }

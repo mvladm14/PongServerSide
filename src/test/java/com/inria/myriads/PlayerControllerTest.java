@@ -6,6 +6,7 @@ import java.util.Collection;
 
 import models.phone.Accelerometer;
 import models.phone.Gravity;
+import models.phone.LinearAcceleration;
 import models.phone.MagneticField;
 import models.phone.PhoneSensors;
 import models.player.HittableRegion;
@@ -32,12 +33,17 @@ public class PlayerControllerTest {
 			.withValues(valuesM).build();
 	private Accelerometer accelerometer = Accelerometer.create()
 			.withValues(valuesA).build();
+	private LinearAcceleration linearAcceleration = LinearAcceleration.create()
+			.withValues(valuesA).build();
+
 	private Gravity gravity = Gravity.create().withValues(valuesM).build();
 
 	private PhoneSensors phoneCoordinatesP1 = PhoneSensors.create()
 			.withSensorTimeStamp(timeStampP1).withMagneticField(magneticField)
-			.withGravity(gravity).withAccelerometer(accelerometer).build();
+			.withGravity(gravity).withAccelerometer(accelerometer)
+			.withLinearAcceleration(linearAcceleration).build();
 	private PhoneSensors phoneCoordinatesP2 = PhoneSensors.create()
+			.withLinearAcceleration(linearAcceleration)
 			.withSensorTimeStamp(timeStampP2).withMagneticField(magneticField)
 			.withAccelerometer(accelerometer).withGravity(gravity).build();
 
@@ -131,6 +137,25 @@ public class PlayerControllerTest {
 		Gravity other = Gravity.create().withValues(valuesA).build();
 		pongSvc.setGravity(player1.getId(), other);
 		Gravity stored = pongSvc.getPhoneSensors(player1.getId()).getGravity();
+		assertTrue(stored.equals(other));
+	}
+
+	@Test
+	public void test_GET_Player_LinearAcceleration() throws Exception {
+		pongSvc.addPlayer(player1);
+		LinearAcceleration stored = pongSvc.getPhoneSensors(player1.getId())
+				.getLinearAcceleration();
+		assertTrue(stored.equals(linearAcceleration));
+	}
+
+	@Test
+	public void test_POST_Player_LinearAcceleration() throws Exception {
+		pongSvc.addPlayer(player1);
+		LinearAcceleration other = LinearAcceleration.create()
+				.withValues(valuesM).build();
+		pongSvc.setLinearAcceleration(player1.getId(), other);
+		LinearAcceleration stored = pongSvc.getPhoneSensors(player1.getId())
+				.getLinearAcceleration();
 		assertTrue(stored.equals(other));
 	}
 
