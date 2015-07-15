@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 // for the application.
 @Configuration
 public class Application {
-	
+
 	// The entry point to the application.
 	public static void main(String[] args) {
 		// This call tells spring to launch the application and
