@@ -8,6 +8,7 @@ import java.util.Collection;
 
 import models.player.HittableRegion;
 import models.player.Player;
+import models.player.PlayerState;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -42,21 +43,32 @@ public class PlayerControllerTest {
 		hittableRegionP2 = HittableRegion.create().withX(30).build();
 
 		player1 = Player.create().withId(1).withUsername("vlad").withScore(0)
-				.withCanHitBall(true).withCanPlay(true)
+				.withCanHitBall(true).withPlayerState(PlayerState.AVAILABLE)
 				.withHittableRegion(hittableRegionP1).build();
 		player2 = Player.create().withId(2).withUsername("roxy").withScore(0)
-				.withCanHitBall(true).withCanPlay(true)
+				.withCanHitBall(true).withPlayerState(PlayerState.AVAILABLE)
 				.withHittableRegion(hittableRegionP2).build();
 
 		System.out.println("@BeforeClass: onceExecutedBeforeAll");
 
 	}
 
+//	@Test
+//	public void test_ADD_GET_Players() throws Exception {
+//		pongSvc.addPlayer(player1);
+//		pongSvc.addPlayer(player2);
+//		Collection<Player> stored = pongSvc.getPlayersList();
+//		assertTrue(stored.size() == 2);
+//	}
+	
 	@Test
 	public void test_ADD_GET_Players() throws Exception {
+		System.out.println(player1.toString());
 		pongSvc.addPlayer(player1);
 		pongSvc.addPlayer(player2);
 		Collection<Player> stored = pongSvc.getPlayersList();
 		assertTrue(stored.size() == 2);
+		System.out.println(stored.iterator().next().toString());
+		assertTrue(stored.iterator().next().getPlayerState() == PlayerState.AVAILABLE);
 	}
 }
